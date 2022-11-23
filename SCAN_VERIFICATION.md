@@ -2,15 +2,18 @@
 
 The following mechanism is how a scanned entity or target can verify the authenticity of a scan. It may even be possible for edge infrastructure to perform this verification before allowing the request to continue to an origin.
 
-There are two mechanisms to enable verification.
+There are three mechanisms to enable verification.
 1. `SIGN` - Using asymmetric encryption to sign each request (recommended)
-2. `HASH` - Generating a unique private hash per asset (simpler)
+2. `HASH` - Generating a unique private hash per asset (simpler per asset)
+3. `PRSH` - Using a pre-shared alphanumeric secret that the scanner sets per account or asset (simplest)
 
 Using `SIGN` requires a scanner to have a ECDSA key pair, where the public key is available in either the `puk` field or a JWKS endpoint (specified in the `jku` - JWKS URI - field).
 If using signing, the scanner MUST set `scm` to `sign`, set an attribute in the `esa` - enabled signature attribute, and set either `jku` or `puk`. Both `jku` and `puk` MAY be used, and at least one MUST be set.
 
 Using `HASH` requires a scanner to use a HMAC utilising the asset and a private secret.
-If using hashing, the scanner MUST set `scm` to `hash` and set an attribute in the `esa`. `jku` or `puk` MUST NOT be set.
+If using hashing, the scanner MUST set `scm` to `hash` and set an attribute in the `esa`. `jku` and `puk` MAY be set if the HMAC function can utilise a public key for out-of-band verification.
+
+If using pre-shared secret, the scanner MUST set the `scm` to `prsh` and set an attribute in the `esa`. `jku` and `puk` MUST not be set. This method requires the user or system to interact with the scanner in order to verify the secret matches.
 
 See the [scanner record](SCANNER.md) for more information on fields.
 
