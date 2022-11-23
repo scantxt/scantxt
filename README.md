@@ -1,6 +1,6 @@
-# scantxt-wip
+# scantxt
 
-scantxt is a common way to allow/disallow scanning activity. Similar to `robots.txt` but structured like `dmarc` to be more customisable with features built-in like ownership verification, notification endpoints and scanner verification.
+scantxt is a common way to allow/disallow scanning activity. Similar to `robots.txt` and structured like `dmarc` with features built-in like ownership verification, notification endpoints and scanner verification.
 
 ```
 ┌─────────────────────────────┐      ┌────────────────────────────────────────────────┐      ┌─────────────┐
