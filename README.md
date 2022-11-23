@@ -14,6 +14,7 @@ scantxt is a common way to allow/disallow scanning activity. Similar to `robots.
 │ TXT records │ scan.json     │      │ TXT record     │ scanner.json  │ jwks.json     │      │ public key  │
 └─────────────┴───────────────┘      └────────────────┴───────────────┴───────────────┘      └─────────────┘
 ```
+(see [overview-diagram.png](overview-diagram.png) if this doesn't render correctly)
 
 ## `scan` records
 
