@@ -21,6 +21,8 @@ The recommended method is to use the `_scan` subdomain for DNS TXT records. Alte
 
 See more info on `scan` records and format here: [SCAN.md](SCAN.md)
 
+You can view examples of these at <https://www.scantxt.org/.well-known/scan.json> or by doing a DNS TXT lookup against `_scan.scantxt.org`
+
 ## `scanner` records
 
 This is a mechanism for scanners to set contact details and signpost what type of scanning they perform.
@@ -28,6 +30,8 @@ This is a mechanism for scanners to set contact details and signpost what type o
 The recommended method is to use the `_scanner` subdomain for DNS TXT records. Alternatively, `/.well-known/scanner.json` (with the mime type `application/json`) can be used (`.json` extension optional).
 
 See about `scanner` records and format here: [SCANNER.md](SCANNER.md)
+
+You can view an example of this at <https://www.scantxt.app/.well-known/scanner.json> or by doing a DNS TXT lookup against `_scanner.scantxt.app`
 
 ## Scanning verification
 
