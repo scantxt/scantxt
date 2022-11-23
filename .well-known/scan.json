@@ -3,7 +3,7 @@
         "v": "SCAN1",
         "p": "allow",
         "ruh": [
-        "mailto:scantxt.org-security@olliejc.uk"
+            "mailto:scantxt.org-security@olliejc.uk"
         ],
         "so": "passive",
         "pr": 5,
@@ -17,11 +17,16 @@
     }, {
         "v": "SCAN1",
         "src": [
-        "www.scantxt.app"
+            "www.scantxt.app"
         ],
         "p": "allow",
         "so": "*",
         "pr": 10,
-        "po": "http,https,80,443"
+        "po": [
+            "http",
+            "https",
+            80,
+            443
+        ]
     }
 ]
