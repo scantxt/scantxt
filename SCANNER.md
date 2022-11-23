@@ -15,7 +15,7 @@ This record and format is for scanning operators to implement as a way to signpo
 |abuse|no|Abuse reporting endpoint following the [SCAN.md](SCAN.md) `ruh` format|
 |contacts|no|Contact(s) following the `ruh` format|
 |types|no|List of [Scan Types](TYPES.md)|
-|scm|no|Signature mechanism, either "sign", "hash" or "none" - default is "none"|
+|scm|no|Signature mechanism, either "sign", "hash", "prsh", or "none" - default is "none"|
 |puk|no|Public key in PEM format without the header or footers (`-- START/END PRIVATE/PUBLIC KEY --`)|
 |jku|no|JWKS URI where public keys can be configured|
 |esa|no|Enabled signature attribute, this follows the format `attribute-type:attribute-name`, e.g. `http_header:X-Scanner-Token`|
