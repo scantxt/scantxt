@@ -34,8 +34,6 @@ See about `scanner` records and format here: [SCANNER.md](SCANNER.md)
 
 You can view an example of this at <https://www.scantxt.app/.well-known/scanner.json> or by doing a DNS TXT lookup against `_scanner.scantxt.app`
 
-## Scanning verification
+## Scanner guidance
 
-This is a mechanism for how scan targets can verify a scan has come from a trusted scanner.
-
-See more information about verification here: [SCAN_VERIFICATION.md](SCAN_VERIFICATION.md)
+See more information, including identification and verification here: [scanning-guidance](scanner-guidance.md)
