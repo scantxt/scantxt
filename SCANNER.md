@@ -2,6 +2,8 @@
 
 This record and format is for scanning operators to implement as a way to signpost the types of scanning they do.
 
+See [scanner-guidance](scanner-guidance.md) for details on identification and verification.
+
 ## Proposed Structure
 
 |code|required|description|
@@ -20,20 +22,6 @@ This record and format is for scanning operators to implement as a way to signpo
 |jku|no|JWKS URI where public keys can be configured|
 |esa|no|Enabled signature attribute, this follows the format `attribute-type:attribute-name`, e.g. `http_header:X-Scanner-Token`|
 |lut|no|Last updated time - rfc3339 format|
-
-## Scanner indication
-
-Scanners should insert/specify a header or other indicator into scans or packets that point to either the `_scanner` subdomain and/or `.well-known` resource.
-For example:
-```
-X-Scanner: https://scantxt.app/.well-known/scanner.json
-```
-
-Scanners may additionally enable a signature (see [SCAN_VERIFICATION.md](SCAN_VERIFICATION.md) for more details), for example:
-```
-X-Scanner: _scanner.scantxt.app
-X-Scanner-Token: eyJ0eXAiOiJK...oHJNMbCeu-Q
-```
 
 ## scanner.json Example:
 
