@@ -36,4 +36,8 @@ You can view an example of this at <https://www.scantxt.app/.well-known/scanner.
 
 ## Scanner guidance
 
-See more information, including identification and verification here: [scanning-guidance](scanner-guidance.md)
+See [scanner-guidance](scanner-guidance.md) for details on identification and verification.
+
+## Reporting guidance
+
+See [reporting-guidance](reporting-guidance.md) for details on reporting endpoints and mechanisms.
