@@ -51,16 +51,16 @@ There are three mechanisms to enable verification.
 3. `PRSH` - Using a pre-shared alphanumeric secret that the scanner sets per account or asset (simplest)
 
 Using `SIGN` requires a scanner to have a ECDSA key pair, where the public key is available in either the `puk` field or a JWKS endpoint (specified in the `jku` - JWKS URI - field).
-If using signing, the scanner MUST set `scm` to `sign`, set an attribute in the `esa` - enabled signature attribute, and set either `jku` or `puk`. Both `jku` and `puk` MAY be used, and at least one MUST be set.
+If using signing, the scanner MUST include `sign` in the `sgm`, set an attribute in the `esa` - enabled signature attribute, and set either `jku` or `puk`. Both `jku` and `puk` MAY be used, and at least one MUST be set.
 
 Using `HASH` requires a scanner to use a HMAC utilising the asset and a private secret.
-If using hashing, the scanner MUST set `scm` to `hash` and set an attribute in the `esa`. `jku` and `puk` MAY be set if the HMAC function can utilise a public key for out-of-band verification.
+If using hashing, the scanner MUST include `hash` in the `sgm` and set an attribute in the `esa`. `jku` and `puk` MAY be set if the HMAC function can utilise a public key for out-of-band verification.
 
-If using pre-shared secret, the scanner MUST set the `scm` to `prsh` and set an attribute in the `esa`. `jku` and `puk` MUST not be set. This method requires the user or system to interact with the scanner in order to verify the secret matches.
+Using `PRSH` requires the scanner MUST include `prsh` in the `sgm` and set an attribute in the `esa`. `jku` and `puk` MAY be set for use with the other mechanisms but will be ignored for pre-shared secrets. This method requires the user or system to interact with the scanner in order to verify the secret matches.
 
 ### Scanner signing steps
 
-1. Scanner sets the `scm` to `sign` and configures a `jku` and/or `puk`
+1. Scanner sets the `sgm` to `sign` and configures a `jku` and/or `puk`
 2. Scanner creates a header JSON, for example:
   - `{"typ": "JWT", "kid": "abc", "alg": "ES256"}`
   - Where:
@@ -78,7 +78,7 @@ If using pre-shared secret, the scanner MUST set the `scm` to `prsh` and set an 
 
 ### Scan verification
 1. Target receives a scan purporting to be from a scanner
-2. Target looks up the `scanner` record and identifies the `scm`, `esa` and `jku` and/or `puk` fields
+2. Target looks up the `scanner` record and identifies the `sgm`, `esa` and `jku` and/or `puk` fields
 3. Target checks for the `esa` in the request - if missing, drop the request
 4. Target extacts the JWT from the attribute as specified by `esa`
 5. Target either uses the `puk` or checks for and fetches `kid` specified in the JWT header and pull from the `jku`
@@ -107,9 +107,9 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEMA2AN6JBCRlf+dlbmjnUjITONl5t
 -----END PUBLIC KEY-----
 ```
 
-`scantxt.app` sets the public key in the JWKS at `https://scantxt.app/.well-known/scanner-jwks.json` and configures the `_scanner.scantxt.app` record with the `scm`, `jku` and `esa` fields:
+`scantxt.app` sets the public key in the JWKS at `https://scantxt.app/.well-known/scanner-jwks.json` and configures the `_scanner.scantxt.app` record with the `sgm`, `jku` and `esa` fields:
 ```
-"v=SCANNER1; scm=sign; jku=https://scantxt.app/.well-known/scanner-jwks.json; esa=http_header:x-scanner-token; info=https://www.scantxt.org; contacts=mailto:scantxt.app-scanner@olliejc.uk; type=banner_passive,crawler_passive,configuration_passive;"
+"v=SCANNER1; sgm=sign; jku=https://scantxt.app/.well-known/scanner-jwks.json; esa=http_header:x-scanner-token; info=https://www.scantxt.org; contacts=mailto:scantxt.app-scanner@olliejc.uk; type=banner_passive,crawler_passive,configuration_passive;"
 ```
 
 ### Scanner steps
@@ -127,7 +127,7 @@ MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEMA2AN6JBCRlf+dlbmjnUjITONl5t
 ### Target steps
 
 1. `scantxt.org` receives HTTP request header `x-scanner` with the value `_scanner.scantxt.app`
-2. `scantxt.org` looks up the `scanner` record from `scantxt.app` and finds the `scm`, `jku` and `esa` fields
+2. `scantxt.org` looks up the `scanner` record from `scantxt.app` and finds the `sgm`, `jku` and `esa` fields
 3. `scantxt.org` checks for the `esa` HTTP request header (`x-scanner-token: eyJ0eXAiOiJKV1QiLCJraWQiOiIxYTJiM2MiLCJhbGciOiJFUzI1NiJ9.eyJpc3MiOiJzY2FudHh0LmFwcCIsImlhdCI6MTY2OTE2NTAyNywiYXVkIjoic2NhbnR4dC5vcmcifQ.I_b2AC0rwpjcz_7CM8Abr8aOn-HbKEWmU4HN9iayyMXyOk9bY-jXEji47mxMmFhRboGbCJYqlNJoHJNMbCeu-Q`)
 4. `scantxt.org` needs to fetch the public key, as it's not in the `puk`, so decodes the JWT to get the `kid` value (`1a2b3c`)
 5. `scantxt.org` verifies and decodes the JWT using the key found in the `jku` endpoint (`https://scantxt.app/.well-known/scanner-jwks.json`)
