@@ -3,25 +3,26 @@
 scantxt is a common way to allow/disallow scanning activity. Similar to `robots.txt` and structured like `dmarc` with features built-in like ownership verification, notification endpoints and scanner verification.
 
 ```
-    ┌─────────────────────────────┐                   ┌─────────┐       ┌─────────┐
-    │                             │                   │ scanner ├──────►│ scanner │
-┌───┤     Reporting Endpoint      │◄───────┐          │ private │       │ public  ├─────────┐
-│   │                             │        │          │ key     │◄──────┤ key     │         │
-│   └─────────────────────────────┘        │          └────┬────┘       └─────────┘         │
-│                                          │               │                                │
-│                                          │               ▼                                │
-│   ┌─────────────────────────────┐    ┌───┴────────────────────────────────────────────┐   │
-│   │                             │    │                                                │   │
-├───┤       Target / Asset        │◄───┤                    Scanner                     │   │
-│   │                             │    │                                                │   │
-▼   ├─────────────────────────────┤    ├────────────────────────────────┐               │   │
-│   │       "scan" records        │    │        "scanner" records       │               │   │
-│   ├─────────────┬───────────────┤    ├────────────────┬───────────────┼───────────────┤   │
-│   │ "_scan" DNS │ /.well-known/ │    │ "_scanner" DNS │ /.well-known/ │ /.well-known/ │◄──┘
-│   │ TXT records │ scan.json     │    │ TXT record     │ scanner.json  │ jwks.json     │
-│   └─────────────┴───────────────┘    └────────────────┴───────────────┴───────────────┘
-│                                                                               ▲
-└───────────────────────────────────────────────────────────────────────────────┘
+    +-----------------------------+                   +---------+       +---------+
+    |                             |                   | scanner +------>| scanner |
++---+     Reporting Endpoint      |<-------+          | private |       | public  +---------+
+|   |                             |        |          | key     |<------+ key     |         |
+|   +-----------------------------+        |          +----+----+       +---------+         |
+|                                          |               |                                |
+|                                          |               v                                |
+|   +-----------------------------+    +---+--------------------------------------------+   |
+|   |                             |    |                                                |   |
++---+       Target / Asset        |<---+                    Scanner                     |   |
+|   |                             |    |                                                |   |
+v   +-----------------------------+    +--------------------------------+               |   |
+|   |       "scan" records        |    |        "scanner" records       |               |   |
+|   +-------------+---------------+    +----------------+---------------+---------------+   |
+|   | "_scan" DNS | /.well-known/ |    | "_scanner" DNS | /.well-known/ | /.well-known/ |<--+
+|   | TXT records | scan.json     |    | TXT record     | scanner.json  | jwks.json     |
+|   +-------------+---------------+    +----------------+---------------+---------------+
+|                                                                               ^
+|                                                                               |
++-------------------------------------------------------------------------------+
 ```
 (see [overview-diagram.png](overview-diagram.png) if this doesn't render correctly)
 
