@@ -2,9 +2,9 @@
 
 _Still drafting..._
 
-Looking to align fields to both [JWT (RFC 7519)](https://www.rfc-editor.org/rfc/rfc7519) and [OCSF (Open Cybersecurity Schema Framework)](https://github.com/ocsf/).
+Looking to align fields to both [JWT (RFC 7519)](https://www.rfc-editor.org/rfc/rfc7519) and [OCSF (Open Cybersecurity Schema Framework)](https://github.com/ocsf/). Additionally, need to explore if/how something like [IODEF](https://datatracker.ietf.org/doc/rfc7970/) is integrated or whether another *EF could be created.
 
-Either plain `json` or `jwt` (using same key pair as the signing verfication).
+Either plain `json` or `jwt` (using key pairs like the signing verfication).
 
 ## Reporting URI Forensics / Details
 
