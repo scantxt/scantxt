@@ -41,7 +41,9 @@ See [scanner-guidance](scanner-guidance.md) for details on identification and ve
     "abc": "MUt...="
   }
   "jku": "https://www.scantxt.app/.well-known/jwks.json",
-  "esa": "http_header:X-Scanner-Token",
+  "esa": {
+    "http_header": "X-Scanner-Token"
+  },
   "lut": "2022-11-23T14:54:00Z"
 }
 ```
