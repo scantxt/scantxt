@@ -18,7 +18,7 @@ See [scanner-guidance](scanner-guidance.md) for details on identification and ve
 |contacts|no|Contact(s) following the `ruh` format|
 |types|no|List of [Scan Types](TYPES.md)|
 |sgm|no|Signature mechanism(s); "sign", "hash", "prsh", or "none" - default is "none"|
-|puk|no|Public key in PEM format without the header or footers (`-- START/END PRIVATE/PUBLIC KEY --`)|
+|puk|no|Key ID and public key in PEM format without the header or footers (`-- START/END PRIVATE/PUBLIC KEY --`)|
 |jku|no|JWKS URI where public keys can be configured|
 |esa|no|Enabled signature attribute, this follows the format `attribute-type:attribute-name`, e.g. `http_header:X-Scanner-Token`|
 |lut|no|Last updated time - rfc3339 format|
@@ -37,7 +37,9 @@ See [scanner-guidance](scanner-guidance.md) for details on identification and ve
     "indexer_passive"
   ],
   "sgm": ["sign", "prsh"],
-  "puk": "MUt...=",
+  "puk": {
+    "abc": "MUt...="
+  }
   "jku": "https://www.scantxt.app/.well-known/jwks.json",
   "esa": "http_header:X-Scanner-Token",
   "lut": "2022-11-23T14:54:00Z"
@@ -52,7 +54,7 @@ _scanner "v=SCANNER1; info=https://www.scantxt.app;
     documentation=https://www.scantxt.txt;
     abuse=mailto:scantxt.app-abuse@olliejc.uk;
     types=indexer_passive;
-    sgm=sign,prsh; puk=MUt...=;
+    sgm=sign,prsh; puk=abc:MUt...=;
     jku=https://www.scantxt.app/.well-known/jwks.json;
     esa=http_header:X-Scanner-Token;
     lut=2022-11-23T14:54:00Z;"
