@@ -1,32 +1,23 @@
 [
     {
         "v": "SCAN1",
-        "p": "allow",
         "ruh": [
             "mailto:scantxt.org-security@olliejc.uk"
-        ],
-        "so": "passive",
-        "pr": 5,
-        "po": "*"
-    }, {
-        "v": "SCAN1",
-        "p": "disallow",
-        "so": "*",
-        "pr": 100,
-        "po": "*"
-    }, {
-        "v": "SCAN1",
-        "src": [
-            "www.scantxt.app"
-        ],
-        "p": "allow",
-        "so": "*",
-        "pr": 10,
-        "po": [
-            "http",
-            "https",
-            80,
-            443
         ]
+    },
+    {
+        "v": "SCAN1",
+        "sr": [
+            "scantxt.app"
+        ],
+        "vf: "abc123"
+    },
+    {
+        "v": "SCAN1",
+        "sr": [
+            "nonexist.scantxt.app"
+        ],
+        "p": "opt-out",
+        "sp": "opt-out"
     }
 ]
