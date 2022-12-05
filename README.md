@@ -1,7 +1,6 @@
 # scantxt
 
-scantxt is a common way to allow/disallow scanning activity. Similar to `robots.txt` and structured like `dmarc` with features built-in like ownership verification, notification endpoints and scanner verification.
-
+scantxt is a common way to opt-out and/or verify ownership to scanners. It's similar in structured to `dmarc` with features built-in like ownership verification, notification endpoints and scanner verifications.
 ```
     +-----------------------------+                   +---------+       +---------+
     |                             |                   | scanner +------>| scanner |
