@@ -1,6 +1,6 @@
 # scantxt
 
-scantxt is a common way to opt-out and/or verify ownership to scanners. It's similar in structured to `dmarc` with features built-in like ownership verification, notification endpoints and scanner verifications.
+scantxt is a common way to opt-out and/or verify ownership to scanners. It's similar in structure to `dmarc` with features built-in like ownership verification, notification endpoints and scanner verifications.
 ```
     +-----------------------------+                   +---------+       +---------+
     |                             |                   | scanner +------>| scanner |
